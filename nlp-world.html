@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>NLP World – Learn how machines understand language</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);--bg:#f5f4ff;--card:#fff;--ink:#1c1b33;--mut:#5f5e80;--ln:#dcd9f5;--a:#7c5cff;--b:#00b8e6;--c:#ff5c8a;--ok:#16a34a;--no:#e11d48}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f0e1f;--card:#1a1935;--ink:#eeedff;--mut:#a5a3d1;--ln:#2e2c58}}
+:root[data-theme="dark"]{--bg:#0f0e1f;--card:#1a1935;--ink:#eeedff;--mut:#a5a3d1;--ln:#2e2c58}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+*,*:before,*:after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 Poppins,system-ui,-apple-system,"Segoe UI",sans-serif;overflow-x:hidden}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;display:flex;gap:14px;align-items:center;padding:10px 18px;background:var(--card);border-bottom:1px solid var(--ln);overflow-x:auto;white-space:nowrap}
+nav b{font-weight:800;background:linear-gradient(90deg,var(--a),var(--c));-webkit-background-clip:text;background-clip:text;color:transparent;margin-right:auto}
+nav a{color:var(--mut);text-decoration:none;font-size:14px;font-weight:600}nav a:hover{color:var(--a)}
+.hero{position:relative;text-align:center;padding:70px 20px 80px;background:linear-gradient(135deg,#5b3df5,#a23bff 50%,#ff5c8a);color:#fff;overflow:hidden}
+.hero h1{font-size:clamp(32px,7vw,60px);margin:0 0 10px;font-weight:800;line-height:1.1}
+.hero p{max-width:600px;margin:0 auto 24px;font-size:18px;opacity:.95}
+.btn{display:inline-block;border:0;cursor:pointer;font:600 15px Poppins,sans-serif;padding:12px 24px;border-radius:30px;margin:4px;text-decoration:none;background:#fff;color:#5b3df5}
+.btn.o{background:transparent;color:#fff;border:2px solid #fff}
+.fl{position:absolute;font-size:34px;opacity:.35;animation:fl 7s ease-in-out infinite}
+@keyframes fl{50%{transform:translateY(-22px) rotate(8deg)}}
+section{max-width:1000px;margin:0 auto;padding:54px 18px}
+h2{font-size:clamp(24px,4vw,34px);margin:0 0 6px;font-weight:800}
+h2 span{background:linear-gradient(90deg,var(--a),var(--c));-webkit-background-clip:text;background-clip:text;color:transparent}
+.sub{color:var(--mut);margin:0 0 22px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px}
+.card{background:var(--card);border:1px solid var(--ln);border-radius:18px;padding:18px;transition:.25s}
+.card:hover{transform:translateY(-5px) rotate(-.6deg);border-color:var(--a);box-shadow:0 10px 26px rgba(124,92,255,.22)}
+.card .e{font-size:34px}.card h3{margin:6px 0 2px;font-size:17px}.card p{margin:0;color:var(--mut);font-size:14px}
+.big{font-size:19px;background:var(--card);border-left:6px solid var(--a);padding:18px 20px;border-radius:14px}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+.two .card ul{padding-left:18px;margin:8px 0;color:var(--mut);font-size:14px}
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.tab{border:2px solid var(--ln);background:var(--card);color:var(--ink);border-radius:30px;padding:8px 16px;cursor:pointer;font:600 14px Poppins,sans-serif}
+.tab.on{background:linear-gradient(90deg,var(--a),var(--c));color:#fff;border-color:transparent}
+.pane{background:var(--card);border:1px solid var(--ln);border-radius:18px;padding:20px}
+.pane h3{margin:0 0 4px}.ex{background:var(--bg);border-left:4px solid var(--c);padding:8px 12px;border-radius:8px;margin-top:10px;font-size:14px}
+input[type=text],textarea{width:100%;padding:11px 14px;border-radius:12px;border:2px solid var(--ln);background:var(--bg);color:var(--ink);font:15px Poppins,sans-serif}
+input:focus{outline:0;border-color:var(--a)}
+.step{background:var(--card);border:1px solid var(--ln);border-radius:14px;padding:12px 14px;margin-top:10px}
+.step b{color:var(--a)}.step small{display:block;color:var(--mut)}
+.t{display:inline-block;background:linear-gradient(90deg,var(--a),var(--b));color:#fff;border-radius:8px;padding:2px 9px;margin:4px 4px 0 0;font-size:14px}
+.t.x{background:var(--ln);color:var(--mut);text-decoration:line-through}
+.sc{overflow-x:auto}table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{border:1px solid var(--ln);padding:6px 10px;text-align:center}th{background:var(--bg)}
+.z{color:var(--mut)}.h{background:rgba(124,92,255,.2);font-weight:600}
+.bar{height:8px;background:var(--ln);border-radius:8px;margin-bottom:14px}.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--a),var(--c));border-radius:8px;transition:.4s}
+.opt{display:block;width:100%;text-align:left;margin:8px 0;padding:12px 16px;border-radius:12px;border:2px solid var(--ln);background:var(--bg);color:var(--ink);font:15px Poppins,sans-serif;cursor:pointer}
+.opt:hover{border-color:var(--a)}.opt.g{border-color:var(--ok);background:rgba(22,163,74,.18)}.opt.r{border-color:var(--no);background:rgba(225,29,72,.15)}
+.rv{opacity:0;transform:translateY(24px);transition:.6s}.rv.in{opacity:1;transform:none}
+footer{text-align:center;color:var(--mut);padding:30px 18px 90px;font-size:14px}
+#fab{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:30;width:62px;height:62px;border-radius:50%;border:0;font-size:28px;cursor:pointer;color:#fff;background:linear-gradient(135deg,var(--a),var(--c));box-shadow:0 8px 22px rgba(124,92,255,.5)}
+#cw{position:fixed;right:12px;bottom:calc(88px + env(safe-area-inset-bottom,0px));z-index:30;width:min(370px,calc(100% - 24px));height:min(520px,68vh);background:var(--card);border:1px solid var(--ln);border-radius:20px;display:none;flex-direction:column;overflow:hidden;box-shadow:0 14px 40px rgba(0,0,0,.35)}
+#cw.on{display:flex}
+#ch{background:linear-gradient(90deg,var(--a),var(--c));color:#fff;padding:12px 16px;font-weight:600}
+#log{flex:1;overflow-y:auto;padding:12px;display:flex;flex-direction:column;gap:8px}
+.m{max-width:90%;padding:8px 12px;border-radius:14px;font-size:14px;line-height:1.45}
+.m.b{background:var(--bg);align-self:flex-start}.m.u{background:var(--a);color:#fff;align-self:flex-end}
+.cp{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px}.cp span{border:1px solid var(--a);color:var(--a);border-radius:14px;padding:2px 9px;font-size:12px;cursor:pointer}
+#cf{display:flex;gap:6px;padding:8px;border-top:1px solid var(--ln)}#cf input{padding:8px 12px;border-radius:20px}
+#cf button{border:0;background:var(--a);color:#fff;border-radius:20px;padding:0 14px;cursor:pointer}
+</style></head><body>
+<nav><b>🤖 NLP World</b><a href="#what">What</a><a href="#apps">Uses</a><a href="#bots">Bots</a><a href="#stages">Stages</a><a href="#lab">Text Lab</a><a href="#bow">BoW &amp; TF-IDF</a><a href="#quiz">Quiz</a></nav>
+<header class="hero">
+<span class="fl" style="left:8%;top:18%">💬</span><span class="fl" style="right:10%;top:22%;animation-delay:1s">🧠</span><span class="fl" style="left:18%;bottom:12%;animation-delay:2s">🔤</span><span class="fl" style="right:20%;bottom:16%;animation-delay:3s">🤖</span>
+<h1>How do machines<br>understand us?</h1>
+<p>Siri, Alexa, Google Translate… they all use <b>NLP</b>. Explore it, play with it, then beat the quiz!</p>
+<a class="btn" href="#what">Start learning 🚀</a><button class="btn o" onclick="openChat()">Ask NLP Buddy 💬</button>
+</header>
+
+<section id="what" class="rv"><h2>What is <span>NLP</span>?</h2><p class="sub">Natural Language Processing</p>
+<div class="big">NLP is a branch of <b>Artificial Intelligence</b> that helps computers <b>understand, interpret and generate human language</b>. We speak with grammar, slang and emotions, but computers only know numbers, so NLP turns language into something a machine can work with.</div></section>
+
+<section id="apps" class="rv"><h2>Where is NLP <span>used</span>?</h2><p class="sub">You use it every single day.</p><div class="grid" id="appg"></div>
+<h2 style="margin-top:44px">What are its <span>limitations</span>?</h2><p class="sub">Machines are smart, but not perfect.</p><div class="grid" id="limg"></div></section>
+
+<section id="bots" class="rv"><h2>Chatbot: <span>Scriptbot vs Smartbot</span></h2><p class="sub">A chatbot is a program that talks to humans using text or voice.</p>
+<div class="two">
+<div class="card"><div class="e">📜</div><h3>Scriptbot</h3><ul><li>Works on a fixed script / rules</li><li>Does not learn</li><li>Limited, only pre-set answers</li><li>Little or no coding needed</li></ul><div class="ex">Example: FAQ bot, customer-care menu bot</div></div>
+<div class="card"><div class="e">🧠</div><h3>Smartbot</h3><ul><li>Uses AI &amp; machine learning</li><li>Learns from data and users</li><li>Handles many kinds of questions</li><li>Complex coding needed</li></ul><div class="ex">Example: Siri, Alexa, Google Assistant</div></div></div>
+<p class="sub" style="margin-top:14px">🤔 Think: the NLP Buddy bot on this page follows keyword rules. Is it a scriptbot or a smartbot?</p></section>
+
+<section id="stages" class="rv"><h2>Stages of <span>NLP</span></h2><p class="sub">Tap each stage to see how a machine reads a sentence.</p><div class="tabs" id="stt"></div><div class="pane" id="stp"></div></section>
+
+<section id="lab" class="rv"><h2>Text <span>Lab</span> 🧪</h2><p class="sub">Type any sentence. Watch it go through <b>text normalisation</b> step by step.</p>
+<input type="text" id="lin" value="Hello!!! I Love my SCHOOL. We are running 2 races. Studies are better!"><div id="lout"></div></section>
+
+<section id="bow" class="rv"><h2>Bag of Words &amp; <span>TF-IDF</span></h2><p class="sub">Change the two sentences and see how a machine turns words into numbers.</p>
+<input type="text" id="d1" value="I love my school."><br><br><input type="text" id="d2" value="My school is amazing!">
+<div class="tabs" style="margin-top:14px"><button class="tab on" data-m="b">Bag of Words</button><button class="tab" data-m="t">TF-IDF</button></div>
+<div class="pane"><div id="bout" class="sc"></div><div class="ex" id="bnote"></div></div></section>
+
+<section id="quiz" class="rv"><h2>Quiz <span>time!</span> 🏆</h2><p class="sub">7 questions. How many can you get right?</p><div class="pane"><div class="bar"><i id="qb"></i></div><div id="qz"></div></div></section>
+<footer>Made for Class X · Artificial Intelligence · NLP</footer>
+
+<button id="fab" onclick="openChat()" aria-label="Chat">💬</button>
+<div id="cw"><div id="ch">🤖 NLP Buddy</div><div id="log"></div><form id="cf"><input type="text" id="ci" placeholder="Ask about NLP…" autocomplete="off"><button>Send</button></form></div>
+
+<script>
+const $=s=>document.querySelector(s);
+const APPS=[["🗣️","Voice assistants","Siri, Alexa, Google Assistant"],["🌐","Translation","Google Translate"],["😊","Sentiment analysis","Is a review positive or negative?"],["📧","Spam filtering","Gmail catches junk mail"],["⌨️","Autocorrect","Keyboard word suggestions"],["📰","Summarisation","Long article to short summary"],["🎤","Speech recognition","Voice typing and search"],["🔍","Search engines","Understands your query"]];
+const LIMS=[["🌀","Ambiguity","One sentence, many meanings"],["😏","Sarcasm & humour","“Great, my phone died again!”"],["🗨️","Slang & mixed language","Hinglish, typos, dialects"],["🧠","Context","Needs earlier talk and world knowledge"],["📚","Needs lots of data","Hard for rare languages"],["⚖️","Bias","Learns unfairness from its data"]];
+const ST=[["Lexical","🔤","What are the words?","Breaks the text into paragraphs, sentences and words (tokens) and studies word structure.","The cats are sleeping → The | cats | are | sleeping"],["Syntactic","🧩","Is the grammar right?","Checks that words are arranged in a correct order (parsing).","✔ The boy eats an apple.  ✘ Apple the eats boy an."],["Semantic","💡","What does it mean?","Finds the literal meaning. A sentence can be grammatical but meaningless.","“Colourless green ideas sleep furiously” → good grammar, no sense"],["Discourse integration","🔗","How does it link to earlier sentences?","Meaning depends on previous sentences, e.g. who “he” or “it” is.","Ravi bought a laptop. He loves it. → He = Ravi, it = laptop"],["Pragmatic","🎯","What does the speaker really want?","Uses real-world knowledge to find the intended meaning.","“Can you pass the salt?” → a polite request, not a question about ability"]];
+const cards=(a,id)=>$(id).innerHTML=a.map(x=>`<div class="card"><div class="e">${x[0]}</div><h3>${x[1]}</h3><p>${x[2]}</p></div>`).join("");
+cards(APPS,"#appg");cards(LIMS,"#limg");
+$("#stt").innerHTML=ST.map((s,i)=>`<button class="tab${i?"":" on"}" data-i="${i}">${i+1}. ${s[0]}</button>`).join("");
+function showSt(i){$("#stp").innerHTML=`<h3>${ST[i][1]} ${ST[i][0]} analysis</h3><b style="color:var(--a)">${ST[i][2]}</b><p>${ST[i][3]}</p><div class="ex">${ST[i][4]}</div>`}
+showSt(0);
+$("#stt").onclick=e=>{const b=e.target.closest(".tab");if(!b)return;document.querySelectorAll("#stt .tab").forEach(x=>x.classList.remove("on"));b.classList.add("on");showSt(+b.dataset.i)};
+/* Text lab */
+const SW=new Set("a an the is are was were am i my me it its to and of in on at this that how you we he she they do does be been so for with hows".split(" "));
+const LM={ran:"run",running:"run",runs:"run",better:"good",best:"good",studies:"study",children:"child",went:"go",loves:"love",races:"race",mice:"mouse"};
+function stem(w){let s=w;if(s.endsWith("ies"))return s.slice(0,-3)+"i";for(const f of["ing","ed","es","s"]){if(s.endsWith(f)&&s.length-f.length>2){s=s.slice(0,-f.length);break}}return s.replace(/([^aeiou])\1$/,"$1")}
+const lem=w=>LM[w]||(w.endsWith("s")&&!w.endsWith("ss")&&w.length>3?w.slice(0,-1):w);
+const chips=(a,c)=>a.map(x=>`<span class="t ${c||""}">${x}</span>`).join("");
+function lab(){const raw=$("#lin").value;
+const sents=raw.match(/[^.!?]+[.!?]*/g)||[];
+const toks=raw.match(/[A-Za-z]+(?:'[a-z]+)?|\d+|[^\sA-Za-z\d]/g)||[];
+const keep=toks.filter(t=>/[A-Za-z]/.test(t)&&!SW.has(t.toLowerCase().replace(/'/g,"")));
+const low=keep.map(t=>t.toLowerCase());const st=low.map(stem),lm=low.map(lem);
+const gone=toks.filter(t=>!keep.includes(t));
+$("#lout").innerHTML=[
+["1. Sentence Segmentation","The corpus is split into sentences.",chips(sents.map(s=>s.trim()))],
+["2. Tokenisation","Every word, number and special character becomes a token.",chips(toks)],
+["3. Remove Stopwords, Special Characters &amp; Numbers","Unnecessary tokens are dropped (struck out).",chips(keep)+"<br>"+chips([...new Set(gone)],"x")],
+["4. Common Case","Everything becomes lower case.",chips(low)],
+["5. Stemming","Affixes are chopped. Result may not be a real word.",chips(low.map((w,i)=>w+" → "+st[i]))],
+["6. Lemmatization","Gives a meaningful dictionary word (lemma).",chips(low.map((w,i)=>w+" → "+lm[i]))]
+].map(s=>`<div class="step"><b>${s[0]}</b><small>${s[1]}</small>${s[2]}</div>`).join("")}
+$("#lin").oninput=lab;lab();
+/* BoW / TFIDF */
+let mode="b";
+const words=s=>s.toLowerCase().replace(/[^a-z0-9 ]/g," ").split(/\s+/).filter(Boolean);
+function bow(){const d=[words($("#d1").value),words($("#d2").value)];const V=[...new Set(d.flat())];
+const cnt=d.map(x=>V.map(w=>x.filter(y=>y===w).length));
+let h;
+if(mode=="b"){h="<table><tr><th>Word</th><th>Sentence 1</th><th>Sentence 2</th></tr>"+V.map((w,i)=>`<tr><td>${w}</td><td class="${cnt[0][i]?"h":"z"}">${cnt[0][i]}</td><td class="${cnt[1][i]?"h":"z"}">${cnt[1][i]}</td></tr>`).join("")+"</table>";
+$("#bnote").innerHTML=`<b>Vectors:</b><br>S1 = [${cnt[0]}]<br>S2 = [${cnt[1]}]`}
+else{const df=V.map((w,i)=>(cnt[0][i]>0)+(cnt[1][i]>0));const idf=df.map(x=>Math.log10(2/x));
+const tf=cnt.map((c,k)=>c.map(v=>v/(d[k].length||1)));
+h="<table><tr><th>Word</th><th>TF S1</th><th>TF S2</th><th>DF</th><th>IDF = log(2/DF)</th><th>TF-IDF S1</th><th>TF-IDF S2</th></tr>"+V.map((w,i)=>{const a=tf[0][i]*idf[i],b=tf[1][i]*idf[i];return `<tr><td>${w}</td><td>${tf[0][i].toFixed(2)}</td><td>${tf[1][i].toFixed(2)}</td><td>${df[i]}</td><td>${idf[i].toFixed(2)}</td><td class="${a?"h":"z"}">${a.toFixed(3)}</td><td class="${b?"h":"z"}">${b.toFixed(3)}</td></tr>`}).join("")+"</table>";
+$("#bnote").innerHTML="<b>TF</b> = word count ÷ total words in the document. <b>IDF</b> = log(N ÷ DF). <b>TF-IDF = TF × IDF.</b><br>Words found in <b>both</b> sentences score 0, so they are less unique."}
+$("#bout").innerHTML=h}
+document.querySelectorAll("[data-m]").forEach(b=>b.onclick=()=>{mode=b.dataset.m;document.querySelectorAll("[data-m]").forEach(x=>x.classList.toggle("on",x===b));bow()});
+$("#d1").oninput=$("#d2").oninput=bow;bow();
+/* Quiz */
+const QZ=[["Which bot learns from data and users?",["Scriptbot","Smartbot","Both","Neither"],1],["Which stage checks grammar?",["Lexical","Syntactic","Semantic","Pragmatic"],1],["Linking “He” to Ravi in the previous sentence is…",["Lexical analysis","Syntactic analysis","Discourse integration","Stemming"],2],["Which process always gives a meaningful root word?",["Stemming","Tokenisation","Lemmatization","Stopword removal"],2],["In TF-IDF, a word found in every document gets…",["A very high score","A score of 0","A negative score","Score of 1"],1],["Splitting “I love my School!” into I | love | my | School | ! is…",["Tokenisation","Stemming","Segmentation","Lemmatization"],0],["“Can you pass the salt?” as a polite request needs…",["Lexical analysis","Semantic analysis","Syntactic analysis","Pragmatic analysis"],3]];
+let qi=0,sc=0;
+function q(){$("#qb").style.width=(qi/QZ.length*100)+"%";
+if(qi>=QZ.length){const m=sc>=6?"🏆 NLP Champion!":sc>=4?"👍 Great effort!":"📚 Revise and try again!";$("#qz").innerHTML=`<h3>You scored ${sc} / ${QZ.length}</h3><p>${m}</p><button class="btn" style="background:var(--a);color:#fff" onclick="qi=0;sc=0;q()">Play again</button>`;return}
+const x=QZ[qi];$("#qz").innerHTML=`<b>Q${qi+1}.</b> ${x[0]}`+x[1].map((o,i)=>`<button class="opt" data-i="${i}">${o}</button>`).join("")}
+$("#qz").onclick=e=>{const b=e.target.closest(".opt");if(!b||b.disabled)return;const a=QZ[qi][2],i=+b.dataset.i;document.querySelectorAll(".opt").forEach(o=>{o.disabled=true;if(+o.dataset.i===a)o.classList.add("g")});if(i===a)sc++;else b.classList.add("r");qi++;setTimeout(q,1100)};
+q();
+/* Reveal */
+const io=new IntersectionObserver(es=>es.forEach(e=>e.isIntersecting&&e.target.classList.add("in")),{threshold:.08});document.querySelectorAll(".rv").forEach(x=>io.observe(x));
+/* Chatbot */
+const KB=[
+[["what is nlp","nlp","natural language"],"<b>NLP</b> is a branch of AI that helps computers understand, interpret and generate human language."],
+[["application","uses of","used for"],"<b>Applications:</b> "+APPS.map(a=>a[1]).join(", ")+"."],
+[["limitation","drawback","challenge","problem"],"<b>Limitations:</b> "+LIMS.map(a=>a[1]).join(", ")+"."],
+[["scriptbot","script bot"],"A <b>scriptbot</b> follows a fixed script, can’t learn and gives limited answers. Example: FAQ bots."],
+[["smartbot","smart bot"],"A <b>smartbot</b> uses AI/ML, learns from data and handles many questions. Examples: Siri, Alexa."],
+[["chatbot","chat bot","bot"],"A <b>chatbot</b> talks to humans via text or voice. Two types: <b>scriptbot</b> (rule-based) and <b>smartbot</b> (AI-based)."],
+[["stages","phases"],"The 5 stages: <b>Lexical → Syntactic → Semantic → Discourse integration → Pragmatic</b>."],
+[["lexical"],ST[0][3]+" Eg: "+ST[0][4]],[["syntactic","syntax","parsing"],ST[1][3]+" Eg: "+ST[1][4]],[["semantic"],ST[2][3]+" Eg: "+ST[2][4]],[["discourse"],ST[3][3]+" Eg: "+ST[3][4]],[["pragmatic"],ST[4][3]+" Eg: "+ST[4][4]],
+[["text processing","normali"],"Text processing converts raw text into a machine-friendly form. Normalisation steps: <b>Sentence segmentation → Tokenisation → Remove stopwords/special characters/numbers → Lower case → Stemming → Lemmatization</b>. Try the Text Lab!"],
+[["segment"],"<b>Sentence segmentation</b> splits the corpus into sentences. “Hello! How are you?” → Hello! | How are you?"],
+[["token"],"<b>Tokenisation</b> splits a sentence into tokens (words, numbers, special characters). “I love my School!” → I | love | my | School | !"],
+[["stopword","stop word"],"<b>Stopwords</b> are unnecessary tokens (is, the, a…) removed along with special characters and numbers."],
+[["lower","case"],"All text is converted to <b>lower case</b> so “School” and “school” aren’t treated as different words."],
+[["stemming","stem"],"<b>Stemming</b> removes affixes to get the base form; the result may not be meaningful. running, runs, runner → run."],
+[["lemma"],"<b>Lemmatization</b> also removes affixes but the result (lemma) is always meaningful. running, ran, better → run, run, good."],
+[["bag of word","bow","vocabulary"],"<b>Bag of Words</b> counts how often each word occurs and builds a vocabulary. Steps: normalise text → create dictionary → create document vectors. Try the BoW tool!"],
+[["tf-idf","tfidf","idf","term frequency"],"<b>TF-IDF</b> finds the most important words. TF = word count ÷ total words. IDF = log(N ÷ DF). TF-IDF = TF × IDF. Words in every document score 0."]
+];
+const MENU=[["what is nlp","What is NLP?"],["applications","Uses"],["limitations","Limits"],["scriptbot vs smartbot","Bots"],["stages","Stages"],["text processing","Text processing"],["tf-idf","TF-IDF"]];
+const log=$("#log");
+function say(h,c){const d=document.createElement("div");d.className="m "+c;d.innerHTML=h;log.appendChild(d);log.scrollTop=log.scrollHeight}
+const cp='<div class="cp">'+MENU.map(m=>`<span data-q="${m[0]}">${m[1]}</span>`).join("")+"</div>";
+say("Hi! I’m <b>NLP Buddy</b> 🤖. Ask me anything about NLP!"+cp,"b");
+function reply(t){const s=t.toLowerCase();
+if(/\b(hi|hello|hey)\b/.test(s))return say("Hello! 👋 What do you want to learn?"+cp,"b");
+if(/smart/.test(s)&&/script/.test(s)||/differ/.test(s)&&/bot/.test(s))return say("<b>Scriptbot:</b> fixed script, no learning, limited answers.<br><b>Smartbot:</b> AI-based, learns, flexible. Eg: Siri, Alexa.","b");
+let best=0,ans=null;for(const [k,a] of KB)for(const w of k)if(s.includes(w)&&w.length>best){best=w.length;ans=a}
+say(ans?ans:"Hmm, I don’t know that yet 🤔 (I’m rule-based, a real smartbot would learn!). Try:"+cp,"b")}
+function ask(t){if(!t.trim())return;say(t.replace(/</g,"&lt;"),"u");setTimeout(()=>reply(t),250)}
+$("#cf").onsubmit=e=>{e.preventDefault();ask($("#ci").value);$("#ci").value=""};
+log.onclick=e=>{const c=e.target.closest("[data-q]");if(c)ask(c.dataset.q)};
+function openChat(){$("#cw").classList.toggle("on")}
+</script></body></html>
